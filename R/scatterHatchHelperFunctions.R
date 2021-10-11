@@ -17,7 +17,7 @@ defaultPatternList <- function(patternList, nGroups){
         ## initializing patternList
         patternList <- vector(mode="list", length=nGroups)
         patternList <- lapply(seq(nGroups), function(i){
-            patternList[[i]] = list(pattern=patterns[i])})
+            patternList[[i]] <- list(pattern=patterns[i])})
     }
     
     ## checks if patternList length is ok
@@ -96,7 +96,7 @@ basePlot <- function(data, x, y, factor, colorPalette,
 #' @param pointAlpha Transparency of each point
 #' @noRd
 addPatternAesDefaults <- function(patternAes, pointSize, pointAlpha){
-    if (length(patternAes) == 0){ stop("No given aesthetics!")}
+    if (length(patternAes)==0){ stop("No given aesthetics!")}
     if (is.null(patternAes$pattern)){ 
         stop("Specify pattern in patternList argument!")
     }
@@ -134,7 +134,7 @@ addPatternAesDefaults <- function(patternAes, pointSize, pointAlpha){
             2*pointSize/ggplot2::.pt, 
             pointSize/ggplot2::.pt)
     }
-    patternAes$pointAlpha = pointAlpha
+    patternAes$pointAlpha <- pointAlpha
     return(patternAes)
 }
 
@@ -192,7 +192,7 @@ addSegments <- function(plt, xGroup, yGroup, xRange, yRange, gridSize,
         ## rotating adjustment based on angle
         rotatedAdjX <- sqrt(diag(
             R %*% diag(c(adjX, adjY), 2, 2)^2 %*% t(R)))[1]
-        if (a == 0){ rotatedAdjX <- adjX}
+        if (a==0){ rotatedAdjX <- adjX}
         ## converting back to regular coordinates
         rotatedStartPoints <- rotateCoords(groupLineCoords$xStart - rotatedAdjX, 
             groupLineCoords$yStart, -a)

@@ -31,9 +31,9 @@
 #' data(pdacData)
 #' scatterHatch(pdacData, "Xt", "Yt", "frame")
 
-scatterHatch <- function(data, x, y, color_by, legendTitle = "", pointSize = 1, 
-    pointAlpha = 0.5, gridSize = NULL, sparsePoints = NULL, 
-    patternList = NULL, colorPalette = NULL){
+scatterHatch <- function(data, x, y, color_by, legendTitle="", pointSize=1, 
+    pointAlpha=0.5, gridSize=NULL, sparsePoints=NULL, 
+    patternList=NULL, colorPalette=NULL){
     if (!(x %in% names(data))){ stop("x column name not present in dataset.")}
     if (!(y %in% names(data))){ stop("y column name not present in dataset.")}
     if (!(color_by %in% names(data))){ stop("color_by column name not present in dataset.")}
@@ -75,7 +75,7 @@ scatterHatch <- function(data, x, y, color_by, legendTitle = "", pointSize = 1,
         if (!(currentPatternAes$pattern %in% c("blank", ""))){ 
             plt <- addSegments(plt, xGroup, yGroup, xRange, yRange, gridSize, 
                 currentPatternAes, pointSize, sparseGroupPoints)}
-        groupNum = groupNum + 1
+        groupNum <- groupNum + 1
     }
     ## creating the legend
     plt <- addLegend(plt, legendDF, legendIcons, color_by, legendTitle)

@@ -27,7 +27,7 @@ getIrregularPoints <- function(pointsToGrid, freqMat, sparsePoints,
     ## removes sparse points from 2D frequency matrix
     allIrregularPoints <- rbind(sparsePointsToGrid, smallClusterToGrid)
     for (i in seq(nrow(allIrregularPoints))){ 
-        freqMat[allIrregularPoints$yIntervals[i], allIrregularPoints$xIntervals[i]] = freqMat[allIrregularPoints$yIntervals[i], allIrregularPoints$xIntervals[i]] - 1
+        freqMat[allIrregularPoints$yIntervals[i], allIrregularPoints$xIntervals[i]] <-  freqMat[allIrregularPoints$yIntervals[i], allIrregularPoints$xIntervals[i]] - 1
     }
     
     return(list(sparsePointsToGrid, smallClusterToGrid, pointsToGrid, freqMat))
@@ -41,10 +41,10 @@ getIrregularPoints <- function(pointsToGrid, freqMat, sparsePoints,
 regularPatternDraw <- function(freqMat, pointsToGrid, yBins){
     xStart <- yStart <- xEnd <- yEnd <- c()
     for (rowNum in seq(nrow(freqMat))){ # iterates by every rowNum
-        rowPoints <- pointsToGrid[pointsToGrid$yIntervals == rowNum, ]
+        rowPoints <- pointsToGrid[pointsToGrid$yIntervals==rowNum, ]
         
         yLevels <- yBins[rowNum] + diff(yBins)[1]/2 # atul's version
-        if (rowNum == nrow(freqMat)){ # for bottom rowNum exception
+        if (rowNum==nrow(freqMat)){ # for bottom rowNum exception
             yLevels <- yBins[rowNum] + diff(yBins)[1]/2
         }
         
@@ -53,8 +53,8 @@ regularPatternDraw <- function(freqMat, pointsToGrid, yBins){
         
         for (colNum in seq(ncol(freqMat))){
             ## starting a line segment
-            if (prevCol == 0 & freqMat[rowNum, colNum]!=0){ 
-                gridPoints <- rowPoints[rowPoints$xIntervals == colNum, ]
+            if (prevCol==0 & freqMat[rowNum, colNum]!=0){ 
+                gridPoints <- rowPoints[rowPoints$xIntervals==colNum, ]
                 xStart <- c(xStart, min(gridPoints$x))
                 yStart <- c(yStart, yLevels)
                 lineDraw <- TRUE
@@ -63,9 +63,9 @@ regularPatternDraw <- function(freqMat, pointsToGrid, yBins){
             ## ending line segment (added logic for handling end of freqMat before end of points)
             if (lineDraw & (freqMat[rowNum, colNum]==0||colNum==ncol(freqMat))){ 
                 if (freqMat[rowNum, colNum]==0)
-                    gridPoints <- rowPoints[rowPoints$xIntervals == colNum-1, ]
+                    gridPoints <- rowPoints[rowPoints$xIntervals==colNum-1, ]
                 else
-                    gridPoints <- rowPoints[rowPoints$xIntervals == colNum, ]
+                    gridPoints <- rowPoints[rowPoints$xIntervals==colNum, ]
                 xEnd <- c(xEnd, max(gridPoints$x))
                 yEnd <- c(yEnd, yLevels)
                 lineDraw <- FALSE

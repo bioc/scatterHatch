@@ -61,8 +61,8 @@ drawHorizontal <- function(gridOutput, gridSize=NULL, pointSize,
         smallClusterToGrid$gridNum <- (smallClusterToGrid$yIntervals - 1)/max(smallClusterToGrid$yIntervals) + smallClusterToGrid$xIntervals
         
         for (gridNum in unique(smallClusterToGrid$gridNum)){
-            xRange <- smallClusterToGrid$x[smallClusterToGrid$gridNum == gridNum]
-            yRange <- smallClusterToGrid$y[smallClusterToGrid$gridNum == gridNum]
+            xRange <- smallClusterToGrid$x[smallClusterToGrid$gridNum==gridNum]
+            yRange <- smallClusterToGrid$y[smallClusterToGrid$gridNum==gridNum]
             clusterEnds <- data.frame(xStart=min(xRange),xEnd=max(xRange),yStart=min(yRange),yEnd=max(yRange))
             lineEndPoints <- rbind(lineEndPoints,clusterEnds)
         }

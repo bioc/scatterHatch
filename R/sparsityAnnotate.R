@@ -17,10 +17,10 @@
 #' @importFrom spatstat.geom nndist
 sparsityAnnotate <- function(pointsToGrid, pointSize, xRange, yRange, whichAxis) {
     
-    if (whichAxis == "x") {
+    if (whichAxis=="x") {
         pointRadius <- abs(convertSizeToCartesian(max(pointSize,1), xRange, "x"))
     }
-    if (whichAxis == "y") {
+    if (whichAxis=="y") {
         pointRadius <- abs(convertSizeToCartesian(max(pointSize,1), yRange, "y"))
     }
     

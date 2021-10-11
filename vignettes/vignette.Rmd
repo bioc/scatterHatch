@@ -35,7 +35,7 @@ The data that will be used to showcase the function is [a tissue-CyCIF PDAC data
 
 ```{r }
 data("pdacData")
-pdacData$cellID = paste0('cell_', 1:nrow(pdacData))
+pdacData$cellID <- paste0('cell_', 1:nrow(pdacData))
 pdacData$Yt <- -pdacData$Yt
 pancreas_frames = c(1:6, 27:31, 15:19, 40:44)
 PDAC_frames = c(23:26, 35:37, 51:52, 64:65, 77)
@@ -46,7 +46,7 @@ annotateLocation <- function(frame){
     if (frame %in% small_intestines_frames){return("Small Intestine")}
     return("Other")
 }
-pdacData$location = sapply(pdacData$frame, annotateLocation)
+pdacData$location <- sapply(pdacData$frame, annotateLocation)
 
 head(pdacData[, c('Xt', 'Yt', 'location', 'frame')])
 ```
@@ -78,10 +78,10 @@ plot(plt)
 
 ## scatterHatch() Arguments Explained
 ```{r echo=FALSE}
-parameters = c('data', 'x', 'y', 'factor', 'legendTitle', 'pointSize', 'pointAlpha', 'gridSize', 'sparsePoints', 'patternList', 'colorPalette')
+parameters <- c('data', 'x', 'y', 'factor', 'legendTitle', 'pointSize', 'pointAlpha', 'gridSize', 'sparsePoints', 'patternList', 'colorPalette')
 paramDescript = c('A dataframe of the dataset being plotted', 'A string describing the column name with the x-coordinates of the points being plotted', 'A string describing the column name with the y-coordinates of the points being plotted', 'A string describing the column name of the factor variable', 'The legend title', 'ggplot2 point size', 'Transparency of each point', 'Integer describing the precision of the hatched patterns.  Larger the value, greater the precision at the expense of efficiency.  Default segregates plots into 10000 bins', 'A logical vector that denotes the outlying points.  Default utilizies an in-built sparsity detector', 'List containing the aesthethics of each pattern', 'Character vector describing the point color of each group; default is color-blind friendly and uses colors from the dittoSeq package')
 
-paramTable = data.frame(parameters, paramDescript)
+paramTable <- data.frame(parameters, paramDescript)
 knitr::kable(paramTable, col.names = c("Argument","Description"))
 
 ```
